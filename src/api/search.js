@@ -15,7 +15,10 @@ const stores = [
   ["elnourtech", true],
   ["tagme3ty", true],
 ];
-const API = `https://pcp.#store#.workers.dev`;
+const API =
+  process.env.NODE_ENV === "development"
+    ? `/api-proxy/#store#`
+    : `https://pcp.#store#.workers.dev`;
 
 export default function searchStores(
   query,
@@ -34,7 +37,10 @@ export default function searchStores(
       continue;
     }
 
-    const url = new URL(API.replace("#store#", store));
+    const url = new URL(
+      API.replace("#store#", store),
+      window.location.origin
+    );
     url.searchParams.append("q", query);
     if (category) url.searchParams.append("cat", category);
 

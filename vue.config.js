@@ -25,4 +25,31 @@ module.exports = {
         name: "assets/[name].[hash:8].[ext]",
       });
   },
+  devServer: {
+    proxy: [
+      "timetech",
+      "maximumhardware",
+      "elnekhely",
+      "highendstore",
+      "elbadrgroup",
+      "computrade",
+      "rameg",
+      "alfrensia",
+      "deltacomputer",
+      "titanseg",
+      "uptodate",
+      "sigmacomputer",
+      "arabhardware",
+      "elnourtech",
+      "tagme3ty",
+    ].reduce((proxy, store) => {
+      proxy[`/api-proxy/${store}`] = {
+        target: `https://pcp.${store}.workers.dev`,
+        changeOrigin: true,
+        secure: false, // In case of certificate issues during scraping
+        pathRewrite: { [`^/api-proxy/${store}`]: "" },
+      };
+      return proxy;
+    }, {}),
+  },
 };
