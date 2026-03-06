@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/api-proxy/:store",
+            "destination": "https://pcp.:store.workers.dev"
+        }
+    ]
+}

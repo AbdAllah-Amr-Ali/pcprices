@@ -15,10 +15,7 @@ const stores = [
   ["elnourtech", true],
   ["tagme3ty", true],
 ];
-const API =
-  process.env.NODE_ENV === "development"
-    ? `/api-proxy/#store#`
-    : `https://pcp.#store#.workers.dev`;
+const API = "/api-proxy/#store#";
 
 export default function searchStores(
   query,
